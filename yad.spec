@@ -8,6 +8,7 @@ URL:		http://code.google.com/p/yad/
 Source0:	%{name}-%{version}.tar.xz
 
 BuildRequires:	gettext
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(gtk+-2.0)
 
