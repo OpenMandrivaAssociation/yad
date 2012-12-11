@@ -45,3 +45,17 @@ rm -rf %{buildroot}/usr/share/aclocal/yad.m4
 %{_iconsdir}/hicolor/*/apps/yad.png
 %{_mandir}/man1/*.1*
 
+
+
+%changelog
+* Wed Jan 25 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.16.3-1
++ Revision: 768132
+- added missing BR
+- imported package yad
+
+
+* Tue Jan 24 2012 Matthew Dawkins <mdawkins@unity-linux.org> 0.16.3-1-unity2011
+- new version 0.16.3
+
+* Mon Mar 07 2011 Gianvacca <gianvacca@unity-linux.org> 0.9.0-1-unity2011
+- First release for Unity
