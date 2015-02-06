@@ -1,7 +1,7 @@
 Summary:	A fork of Zenity with many improvements
 Name:		yad
 Version:	0.16.3
-Release:	1
+Release:	2
 Group:		Development/GNOME and GTK+
 License:	GPLv2
 URL:		http://code.google.com/p/yad/
