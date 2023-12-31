@@ -1,16 +1,21 @@
 Summary:	A fork of Zenity with many improvements
 Name:		yad
-Version:	0.16.3
-Release:	2
+Version:	13.0
+Release:	1
 Group:		Development/GNOME and GTK+
 License:	GPLv2
-URL:		http://code.google.com/p/yad/
-Source0:	%{name}-%{version}.tar.xz
+Url:		https://sourceforge.net/projects/yad-dialog/
+Source0:	https://github.com/v1cont/yad/releases/download/v%{version}/%{name}-%{version}.tar.xz
 
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtksourceview-3.0)
+BuildRequires:	pkgconfig(gspell-1)
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(gtk+-unix-print-3.0)
+BuildRequires:	pkgconfig(webkitgtk-6.0)
+BuildRequires:	perl(XML::Parser)
 
 %description
 Yad (yet another dialog) is a fork of Zenity with many improvements, such as
@@ -23,39 +28,38 @@ Its ChangeLog consists of just "bump version to..." and "translation updated"
 for the long time, but many interesting ideas which are ignored by
 developers/maintainers were in GNOME Bugzilla.
 
-%prep
-%setup -q 
-
-%build
-%configure2_5x 
-       
-%make 
-
-%install
-rm -rf %{buildroot}
-%makeinstall_std
-
-rm -rf %{buildroot}/usr/share/aclocal/yad.m4
-
-%find_lang %{name}
-
 %files -f %{name}.lang
-%doc AUTHORS ChangeLog NEWS README TODO THANKS
-%{_bindir}/%{name}
-%{_iconsdir}/hicolor/*/apps/yad.png
+%license COPYING
+%doc README.md AUTHORS NEWS THANKS TODO
+%{_bindir}/%{name}*
+%{_datadir}/applications/*.desktop
+%{_datadir}/glib-2.0/schemas/*
+%{_datadir}/aclocal/%{name}.m4
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_mandir}/man1/*.1*
 
+#----------------------------------------------------------------------
 
+%prep
+%autosetup -p1 
 
-%changelog
-* Wed Jan 25 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.16.3-1
-+ Revision: 768132
-- added missing BR
-- imported package yad
+# build against webkit2gtk-6.0
+sed -i -e 's/webkit2gtk-4.0/webkit2gtk-6.0/g' configure.ac
 
+%build
+autoreconf -fiv
+%configure\
+	--enable-icon-browser \
+	--with-gtk=gtk3 \
+	--enable-html
+%make_build
 
-* Tue Jan 24 2012 Matthew Dawkins <mdawkins@unity-linux.org> 0.16.3-1-unity2011
-- new version 0.16.3
+%install
+%make_install
 
-* Mon Mar 07 2011 Gianvacca <gianvacca@unity-linux.org> 0.9.0-1-unity2011
-- First release for Unity
+# remove unwanted
+rm -rf %{buildroot}/usr/share/aclocal/yad.m4
+
+# locales
+%find_lang %{name}
+
