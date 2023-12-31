@@ -14,7 +14,7 @@ BuildRequires:	pkgconfig(gtksourceview-3.0)
 BuildRequires:	pkgconfig(gspell-1)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(gtk+-unix-print-3.0)
-BuildRequires:	pkgconfig(webkitgtk-6.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	perl(XML::Parser)
 
 %description
@@ -43,8 +43,8 @@ developers/maintainers were in GNOME Bugzilla.
 %prep
 %autosetup -p1 
 
-# build against webkit2gtk-6.0
-sed -i -e 's/webkit2gtk-4.0/webkit2gtk-6.0/g' configure.ac
+# build against webkit2gtk-4.1
+sed -i -e 's/webkit2gtk-4.0/webkit2gtk-4.1/g' configure.ac
 
 %build
 autoreconf -fiv
@@ -56,9 +56,6 @@ autoreconf -fiv
 
 %install
 %make_install
-
-# remove unwanted
-rm -rf %{buildroot}/usr/share/aclocal/yad.m4
 
 # locales
 %find_lang %{name}
