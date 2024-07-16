@@ -1,6 +1,6 @@
 Summary:	A fork of Zenity with many improvements
 Name:		yad
-Version:	13.0
+Version:	14.1
 Release:	1
 Group:		Development/GNOME and GTK+
 License:	GPLv2
