@@ -1,7 +1,7 @@
 Summary:	A fork of Zenity with many improvements
 Name:		yad
-Version:	14.1
-Release:	2
+Version:	14.2
+Release:	1
 Group:		Development/GNOME and GTK+
 License:	GPLv2
 Url:		https://sourceforge.net/projects/yad-dialog/
