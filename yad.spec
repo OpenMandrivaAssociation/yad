@@ -7,6 +7,11 @@ License:	GPLv2
 Url:		https://sourceforge.net/projects/yad-dialog/
 Source0:	https://github.com/v1cont/yad/releases/download/v%{version}/%{name}-%{version}.tar.xz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	libtool
